@@ -1,10 +1,38 @@
 # Handover Note
 
-Built from the supplied `Vorexa_Claude_Design_Brief.md` and the Vorexa brand asset
-folder (Google Drive). This implements the brief's section 7 spec directly rather
-than the two `.dc.html` mockups in the same folder — those were drafts in a
-proprietary page-builder format (custom `<x-dc>` / `sc-if` / `sc-for` markup, not
-valid HTML/React) and were used only as visual reference, not copied.
+Built from the supplied `Vorexa_Claude_Design_Brief.md`, the Vorexa brand asset
+folder (Google Drive), and a follow-up "v2 launch readiness" prompt that
+extended the original single-page brief into a multi-page site. The original
+brief's single-page constraint was superseded by that later instruction — this
+isn't a case of scope creep, it was an explicit, confirmed pivot.
+
+## Site structure (v2)
+
+The site is now multi-page:
+
+- `/` — Home. Trimmed to the hero only; About/Technologies/Contact moved to
+  their own routes rather than being duplicated on both Home and dedicated
+  pages (confirmed choice — avoids duplicate content).
+- `/about` — About + one-paragraph Founder note (Mornay Walters).
+- `/technologies` — overview grid, each card linking to its detail page, with
+  a status label ("In development" on all five per the v2 spec).
+- `/technologies/[slug]` — one page per product (ace, obstrata, ledgera,
+  notara, vaulta), statically generated.
+- `/contact` — working form (see below) plus the existing email/phone/address.
+- `/privacy`, `/terms` — see "Legal pages" below.
+- 404 — handled by `app/not-found.tsx` (Next.js's catch-all convention;
+  there's no literal `/404` route file, but visiting any unknown URL renders it).
+
+Header and Footer were hoisted into `app/layout.tsx` so every route gets them
+consistently. The header's active-link state is now route-based (`usePathname`)
+instead of the old scroll-spy, since sections no longer live on one page.
+
+Originally built from the supplied `Vorexa_Claude_Design_Brief.md` and the Vorexa
+brand asset folder (Google Drive). The original single-page implementation used
+the brief's section 7 spec directly rather than the two `.dc.html` mockups in
+the same Drive folder — those were drafts in a proprietary page-builder format
+(custom `<x-dc>` / `sc-if` / `sc-for` markup, not valid HTML/React) and were
+used only as visual reference, not copied.
 
 ## Assets used
 
@@ -80,46 +108,99 @@ to 256px — this changes only the background's opacity, not the artwork itself.
 If a native transparent export of the ACE mark becomes available later, prefer it
 over the derived version at `public/brand/products/ace.png`.
 
+## Contact form and Resend (needs an API key before launch)
+
+`/contact` has a real form (Name, Email, Company, Enquiry type, Message) with
+client-side validation, posting to `app/api/contact/route.ts`. That route uses
+the [Resend](https://resend.com) SDK to send mail to `info@vorexa.co.za`.
+
+**This will not send real email until `RESEND_API_KEY` is set.** Without it,
+the route returns a real `503` with a clear message ("isn't connected to email
+delivery yet... email us directly at...") — the form never claims success it
+didn't achieve. Two things still need doing before launch:
+
+1. Set `RESEND_API_KEY` — copy `.env.example` to `.env.local` for local dev
+   (git-ignored, safe for the real key), and add it to your hosting provider's
+   environment variables for production (e.g. Vercel project → Settings →
+   Environment Variables). **Do not paste the key into chat or commit it** —
+   it's a private secret, unlike a Supabase publishable key.
+2. Replace the `from` address in `app/api/contact/route.ts` (currently
+   `onboarding@resend.dev`, Resend's shared testing sender) with an address on
+   a domain you've verified in Resend. The testing sender only reliably
+   delivers to the Resend account owner's own address.
+
+## Legal pages — need input before launch
+
+- **`/privacy`**: POPIA-oriented policy using the supplied copy exactly.
+  `Last updated: [date]` and the Information Officer `[Name]` are left as
+  literal visible placeholders (plus an HTML comment in the page source
+  flagging both) — per instruction, an officer name was not invented.
+- **`/terms`**: minimal terms sufficient for a marketing site with no
+  e-commerce or accounts. `Last updated: [date]` is flagged the same way.
+  **A corporate attorney should review this before public launch**,
+  particularly once any product goes live and starts processing user data
+  beyond enquiry forms — this is placeholder-quality legal text, not
+  attorney-reviewed.
+- **Footer registration number**: the v2 spec asked for a
+  "Vorexa (Pty) Ltd | Registration number" line, but only if CIPC-registered
+  and a number is supplied. Neither was confirmed, so the footer shows
+  "Vorexa (Pty) Ltd" with no registration number, rather than a placeholder
+  visible to the public.
+
 ## What was deliberately left out
 
-Per brief section 15: no extra routes, no contact form (no delivery/privacy
-handling confirmed), no analytics, no CMS, no theme switcher, no social icons,
-no fabricated testimonials/claims/history.
+Per the v2 spec's explicit out-of-scope list: no blog/careers/press pages, no
+analytics or cookie tracking, no content for Creative/Capital/Labs divisions,
+no client names/logos/testimonials, no payment or product login system.
 
-## Supabase (not wired up)
+## Supabase (still not wired up)
 
 A Supabase project was shared for possible future use on the site:
 
 - URL: `https://maepyzofzytsmqukinlp.supabase.co`
 - Publishable key: `sb_publishable_lPHUzyVni2BAuMKqfNJghg_V6LLvayA`
 
-Per instruction, this is filed for later — nothing in the codebase uses it yet.
+Per instruction, this is filed for later — nothing in the codebase uses it.
 It doesn't correspond to either Supabase project visible from this session's
-connected Supabase account, so its schema wasn't inspected. The most likely use
-is backing a real contact form (the current site only offers a `mailto:` link,
-since no form-delivery method was confirmed at build time — see "What was
-deliberately left out" above). When there's a concrete feature to build, wire
-the key in via an environment variable (`NEXT_PUBLIC_SUPABASE_URL` /
-`NEXT_PUBLIC_SUPABASE_ANON_KEY`), not hardcoded — publishable keys are safe to
-expose client-side, but they still shouldn't be duplicated as string literals.
+connected Supabase account, so its schema wasn't inspected. Now that the
+contact form exists, it runs on Resend instead (see above) — if the intent
+was ever for Supabase to back the form, say so and it can be swapped in.
 
 ## Verification done
 
-- `npm run build` and `npm run lint` — both clean.
-- Visual check at 375px, 768px, 1280px, 1440px (see screenshots taken during build).
-- Single `h1`, all four section landmarks present, skip-to-content link works on
-  focus, mobile menu opens/closes and returns focus to the toggle button, nav
-  scroll-spy and anchor scrolling work, zero browser console errors.
-- Contrast-checked every text/background colour pairing in the palette against
-  WCAG AA (see "Bugs found" above).
+- `npm run build` and `npm run lint` — both clean; all 16 routes (including the
+  5 static `/technologies/[slug]` pages) build successfully.
+- Every route returns the expected status: all real pages 200, unknown URLs 404.
+- Contact form: empty submit shows inline validation errors; a valid submit
+  (with no `RESEND_API_KEY` set) correctly surfaces the "not connected yet"
+  error rather than a fake success.
+- Visual check of every new page at desktop and mobile widths, plus the
+  original 375/768/1280/1440 sweep on Home.
+- Nav active-state correctly reflects the current route (including on
+  `/technologies/[slug]` detail pages, which highlight "Technologies") and
+  the mobile menu reflects the same state.
+- `[date]`/`[Name]` placeholders and their HTML comment flags confirmed present
+  in the rendered page source for `/privacy` and `/terms`.
+- Re-ran the full WCAG AA contrast check against every colour pairing
+  introduced in this pass, including the footer's copyright/legal text —
+  found and fixed one more failure: `#7C8AA3` on navy was 4.41:1 (needs 4.5),
+  present since the original build. Replaced with the `#A9B4C4` tone already
+  used elsewhere in the footer, which passes at 7.3:1.
+- Zero browser console errors across all pages tested.
 
 ## Before deploying
 
-1. Confirm the contact email, then update `contactEmail` in `content/products.ts`
+1. Set `RESEND_API_KEY` and verify a sending domain in Resend (see "Contact
+   form and Resend" above) — the form is otherwise honest about being
+   unconfigured, but obviously shouldn't ship that way.
+2. Fill in `[date]` (both legal pages) and the Information Officer `[Name]`
+   (privacy policy) — flagged in the page source via HTML comments.
+3. Have a corporate attorney review `/terms` and `/privacy` before public launch.
+4. Confirm the contact email, then update `contactEmail` in `content/products.ts`
    if it changes.
-2. Set the production domain and add `metadataBase` in `app/layout.tsx`.
-3. Run Lighthouse against the deployed build to confirm the brief's targets
+5. Set the production domain and add `metadataBase` in `app/layout.tsx`.
+6. Run Lighthouse against the deployed build to confirm the brief's targets
    (Performance 90+, Accessibility 95+, Best Practices 95+, SEO 95+) — not run
    here since there's no production URL yet.
-4. Decide on hosting (Vercel is the obvious fit for a Next.js app) — not deployed
+7. Decide on hosting (Vercel is the obvious fit for a Next.js app) — not deployed
    as part of this handover.

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -24,7 +26,10 @@ const description =
 // been confirmed yet (see HANDOVER.md). Set it once the domain is final so
 // Open Graph / Twitter image URLs resolve to absolute paths.
 export const metadata: Metadata = {
-  title,
+  title: {
+    default: title,
+    template: "%s | Vorexa",
+  },
   description,
   icons: {
     icon: "/icon.png",
@@ -50,8 +55,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased`}>
-        {children}
+      <body
+        className={`${spaceGrotesk.variable} ${inter.variable} overflow-x-hidden bg-offwhite font-body text-charcoal antialiased`}
+      >
+        <a
+          href="#main"
+          className="absolute left-[-9999px] top-0 z-[100] bg-navy px-5 py-3 text-[14px] font-semibold text-white focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );
