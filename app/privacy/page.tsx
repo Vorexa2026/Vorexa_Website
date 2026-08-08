@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy",
   description: "How Vorexa collects, uses and protects personal information, in accordance with POPIA.",
 };

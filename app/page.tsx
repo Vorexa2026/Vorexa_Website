@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PrimaryLink, TextLink } from "@/components/button";
 import ProductStrip from "@/components/product-strip";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

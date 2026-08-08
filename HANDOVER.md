@@ -1,5 +1,50 @@
 # Handover Note
 
+## Live-site review + MJW content migration
+
+Triggered by a review of the now-live https://www.vorexa.co.za. Three technical faults were found and fixed, and the product content was rebuilt from the MJW site's (much stronger) source copy ahead of that site being retired.
+
+### Technical fixes
+
+- **www canonical mismatch.** `vorexa.co.za` 308-redirects to `www.vorexa.co.za`, so **www is canonical** — but the site was publishing the non-www form everywhere (sitemap, robots, JSON-LD, `og:image`), because `SITE_URL` was never set in Vercel and fell back to a placeholder. `lib/site.ts` now defaults to `https://www.vorexa.co.za`, so this is correct with or without the env var. Verified: all 10 sitemap URLs, canonicals and OG image URLs now resolve without a redirect.
+- **No canonical tags existed.** Added `alternates.canonical` to every page including the homepage (which had no metadata export at all).
+- **ACE removed** per instruction. `/technologies/ace` now 404s and is out of the sitemap. It was live for roughly a day with no inbound links, so no redirect was added — say the word if you'd rather it 301 to `/technologies`.
+
+### Product status — now accurate per product
+
+Previously every product claimed "In development" while the MJW site simultaneously claimed all four were "Active". Confirmed actual state:
+
+| Product | Status |
+|---|---|
+| Notara | **Live** |
+| Obstrata | **Live** |
+| Ledgera | **Private beta** |
+| Vaulta | **Private beta** |
+
+A new `components/status-pill.tsx` renders all three states distinctly. Colour is never the only signal — the status word is always present — so it stays readable for colour-blind users, and all three pass WCAG AA on navy.
+
+**`llms.txt` was stating a falsehood** and has been rewritten. It previously told AI systems "None of Vorexa's products are currently live, purchasable, or open for public signup" — untrue for two products. It now states per-product availability, and explicitly instructs AI systems not to generalise across products, not to invent pricing/user numbers, not to claim app-store listings, and not to confuse Vorexa (Pty) Ltd with the similarly-named UK and US entities.
+
+### Content migrated from MJW
+
+Pulled from the live MJW site (no repo access needed):
+
+- **Sharper product copy** for all four, including the "what it solves" one-liner pattern, now shown on both cards and detail pages.
+- **Mobile app descriptions** — deliberately worded as *developed* rather than *published*, mirroring MJW's own framing, since no app-store listings were found. Do not upgrade this language without store links to point at.
+- **Full founder narrative** plus a real photo (`public/brand/people/mornay-walters.jpg`, optimised 1.7MB → 44KB) — the About page previously had no photo and a much thinner bio.
+- **The Family Caregiver** book with cover art, linking to Amazon (tracking params stripped).
+- **"How we build"** — MJW's three principles *with* their explanatory text, replacing four unexplained one-liners. Headline "No venture capital. No growth-at-all-costs pressure." carried across.
+
+Music was deliberately left behind as personal/MJW-brand.
+
+## Open items
+
+1. **Contact form is probably not delivering.** `app/api/contact/route.ts` still sends `from: onboarding@resend.dev` — Resend's shared testing sender, which only delivers to the Resend account owner's own address. Verify a domain in Resend and change this to e.g. `website@vorexa.co.za`. **This is the only conversion path on the site.**
+2. **Product links / CTAs not added.** The four products are live at `notara|obstrata|ledgera|vaulta.mjwgroup.co.za`. These were deliberately *not* linked from Vorexa, because retiring `mjwgroup.co.za` would break them. Decide whether those apps stay on that domain or move to `vorexa.co.za` subdomains, then the links are a one-line addition.
+3. **Retiring MJW**: 301-redirect `mjw-ecosystem.vercel.app` to the Vorexa equivalents rather than deleting, and forward `info@mjwgroup.co.za` — it is published and in use.
+4. **Vercel Web Analytics** — confirm it is toggled on in the project dashboard; the scripts 404 locally by design but should serve in production.
+5. **Privacy policy scope.** It currently covers only website contact-form data. With two products live and holding real user data (including health data in Vaulta), the products likely need their own privacy terms — worth a legal check, especially for POPIA and health information.
+
 ## Industry benchmark review: quick-win pass
 
 A full plan for this pass lives in the session's plan file; summarized here for the permanent record. Requested: a review of the site against comparable industry offerings (venture-studio/multi-product tech group sites, B2B SaaS conventions) and a prioritized list of quick fixes. Confirmed scope: add Vercel Analytics, add a homepage portfolio-preview strip, domain confirmed as linked via Vercel (exact string not available from the connected Vercel account — see "Open item" below).

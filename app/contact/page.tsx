@@ -4,6 +4,7 @@ import ContactForm from "@/components/contact-form";
 import { contactAddress, contactEmail, contactPhone, contactPhoneHref } from "@/content/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: "For product, partnership or business enquiries, contact Vorexa directly.",
 };

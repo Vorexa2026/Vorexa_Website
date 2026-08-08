@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Use",
   description: "The terms governing use of the Vorexa website.",
 };

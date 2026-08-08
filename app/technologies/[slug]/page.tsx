@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/json-ld";
+import StatusPill from "@/components/status-pill";
 import { SITE_URL } from "@/lib/site";
 import { products, productSlugParams } from "@/content/products";
 
@@ -14,7 +15,16 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: product.name,
     description: product.whatItDoes,
+    alternates: { canonical: `/technologies/${product.slug}` },
   };
+}
+
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
+      {children}
+    </p>
+  );
 }
 
 export default function TechnologyDetailPage({ params }: { params: { slug: string } }) {
@@ -31,6 +41,7 @@ export default function TechnologyDetailPage({ params }: { params: { slug: strin
           description: product.whatItDoes,
           applicationCategory: product.category,
           url: `${SITE_URL}/technologies/${product.slug}`,
+          publisher: { "@type": "Organization", name: "Vorexa", url: SITE_URL },
         }}
       />
       <div
@@ -64,31 +75,40 @@ export default function TechnologyDetailPage({ params }: { params: { slug: strin
                 {product.name}
               </h1>
               <p className="mt-1 text-[15px] font-semibold uppercase tracking-[0.06em] text-teal">
-                {product.category}
+                {product.tagline}
               </p>
             </div>
           </div>
 
-          <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-teal/40 bg-white/5 px-4 py-2 font-body text-[13px] font-semibold uppercase tracking-[0.08em] text-white">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden="true" />
-            Status: {product.status}
+          <div className="mb-12">
+            <StatusPill status={product.status} prefix="Status:" />
           </div>
 
           <div className="mb-10">
-            <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
-              What it does
-            </p>
+            <Label>What it does</Label>
             <p className="text-[18px] leading-relaxed text-white sm:text-[19px]">
               {product.whatItDoes}
             </p>
           </div>
 
-          <div>
-            <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
-              Built for
+          <div className="mb-10 border-l-2 border-teal pl-6">
+            <Label>What it solves</Label>
+            <p className="text-[18px] leading-relaxed text-white sm:text-[19px]">
+              {product.solves}
             </p>
+          </div>
+
+          <div className="mb-10">
+            <Label>Built for</Label>
             <p className="text-[18px] leading-relaxed text-[#A9B4C4] sm:text-[19px]">
               {product.builtFor}
+            </p>
+          </div>
+
+          <div className="border-t border-white/10 pt-8">
+            <Label>On mobile</Label>
+            <p className="text-[18px] leading-relaxed text-[#A9B4C4] sm:text-[19px]">
+              {product.mobile}
             </p>
           </div>
         </div>
