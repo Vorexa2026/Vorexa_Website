@@ -1,5 +1,26 @@
 # Handover Note
 
+## Second round of post-launch-review fixes
+
+Further feedback from the deployed Vercel preview, addressed:
+
+- **Header nav**: was showing three plain text links plus a separate navy
+  "Contact" button — a visible duplicate of the Contact link, and
+  inconsistent styling against the other two. All three nav items (About,
+  Technologies, Contact) are now uniform navy blocks matching that button's
+  look, with a teal underline marking the current page. The extra duplicate
+  Contact button is gone, on both desktop and the mobile menu.
+- **About and Technologies pages**: were light/white-themed, which read as
+  inconsistent against Home and Contact's dark navy theme. Both (including
+  the technology detail pages) are now dark navy throughout, reusing the
+  same `SectionHeading` "light" variant, radial-glow background treatment
+  and text colours (`white`/`#A9B4C4`/`teal`) as Home and Contact. Product
+  cards became dark panels (`bg-white/[0.04]`, `border-white/10`) with white
+  logo chips and a bordered status pill, so logos and light-card contrast
+  still pop against the dark background. Every new colour pairing was
+  contrast-checked (all ≥5.4:1, well above the 4.5:1 minimum) before
+  building — see the previous round's note below for why that check matters.
+
 ## Post-launch-review fixes (post v2)
 
 Feedback from the deployed Vercel preview, addressed:

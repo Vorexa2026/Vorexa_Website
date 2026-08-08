@@ -59,25 +59,19 @@ export default function Header() {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`text-[14px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 ${
-                isActive(link.href) ? "text-navy" : "text-muted hover:text-navy"
+              className={`border-b-[3px] bg-navy px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-blue ${
+                isActive(link.href) ? "border-teal" : "border-transparent"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="bg-navy px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-blue"
-          >
-            Contact
-          </Link>
         </nav>
 
         <button
@@ -106,7 +100,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="flex flex-col border-t border-border bg-offwhite px-5 pb-5 md:hidden"
+          className="flex flex-col border-t border-border bg-offwhite px-5 pb-5 pt-4 md:hidden"
         >
           {navLinks.map((link, i) => (
             <Link
@@ -115,18 +109,13 @@ export default function Header() {
               ref={i === 0 ? firstLinkRef : undefined}
               onClick={closeMenu}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className="flex min-h-[56px] items-center border-b border-border font-heading text-[20px] font-semibold text-navy"
+              className={`flex min-h-[56px] items-center justify-center bg-navy font-heading text-[18px] font-semibold text-white ${
+                i > 0 ? "mt-2" : ""
+              } ${isActive(link.href) ? "border-b-[3px] border-teal" : "border-b-[3px] border-transparent"}`}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            onClick={closeMenu}
-            className="mt-4 flex min-h-[56px] items-center justify-center bg-navy text-[16px] font-semibold text-white"
-          >
-            Contact
-          </Link>
         </nav>
       ) : null}
     </header>
