@@ -163,8 +163,8 @@ export default function Home() {
             />
 
             <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((product, i) => (
-                <ProductCard key={product.name} product={product} index={i} />
+              {products.map((product) => (
+                <ProductCard key={product.name} product={product} />
               ))}
             </div>
 

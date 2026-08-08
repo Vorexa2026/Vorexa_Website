@@ -2,6 +2,7 @@ export type Product = {
   name: string;
   category: string;
   description: string;
+  logo: string;
 };
 
 export const products: Product[] = [
@@ -10,30 +11,35 @@ export const products: Product[] = [
     category: "Personal operating system",
     description:
       "A connected workspace for commitments, priorities, projects and daily decision support.",
+    logo: "/brand/products/ace.png",
   },
   {
     name: "Obstrata",
     category: "Property operations",
     description:
       "Operational management for property portfolios, including meetings, reporting, compliance, utilities and tenant workflows.",
+    logo: "/brand/products/obstrata.png",
   },
   {
     name: "Ledgera",
     category: "Financial management",
     description:
       "A structured view of income, expenses, obligations, cash position and debt.",
+    logo: "/brand/products/ledgera.png",
   },
   {
     name: "Notara",
     category: "Knowledge and action management",
     description:
       "A workspace for capturing notes, transcripts, decisions, actions and planning context.",
+    logo: "/brand/products/notara.png",
   },
   {
     name: "Vaulta",
     category: "Health information management",
     description:
       "A private system for organising health information, records and ongoing care context.",
+    logo: "/brand/products/vaulta.png",
   },
 ];
 

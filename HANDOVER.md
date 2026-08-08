@@ -59,11 +59,26 @@ Per the brief's section 16, these have not been guessed:
   Open Graph/Twitter image URLs currently resolve relative to whatever host serves
   the page. Set `metadataBase: new URL("https://...")` once the domain is final.
 - **LinkedIn** — not included (not supplied).
-- **Product logos** — none were supplied for ACE / Obstrata / Ledgera / Notara /
-  Vaulta, so the technology cards use typographic treatment only (index number,
-  name, category, description) with no broken image placeholders. `ProductCard`
-  (`components/product-card.tsx`) can take a `logo` prop later without any layout
-  changes.
+
+## Product logos
+
+All five product logos were supplied afterwards (shared directly in chat, then
+added to the Drive folder) and are now wired into the technology cards:
+`public/brand/products/{ace,obstrata,ledgera,notara,vaulta}.png`, referenced via
+the `logo` field on each entry in `content/products.ts`.
+
+One integrity note: four of the five Drive uploads (`ledgera.png`, `notara.png`,
+`obstrata.png`, `vaulta.png`) are 96×96 PNGs. When first retrieved, two of them
+(`ledgera.png`, `notara.png`) came through with corrupted compressed data — this
+was caught by validating each file's zlib stream before use, not by visual
+inspection, and re-fetching resolved it. The fifth (ACE) was supplied as a
+1254×1254 PNG with a solid black background and no alpha channel — placing it
+directly on the white cards would have shown a black square. It was reprocessed
+into a transparent PNG using luminance-based alpha extraction (alpha = max(R,G,B),
+appropriate since the source is a glow-style graphic on pure black) and downscaled
+to 256px — this changes only the background's opacity, not the artwork itself.
+If a native transparent export of the ACE mark becomes available later, prefer it
+over the derived version at `public/brand/products/ace.png`.
 
 ## What was deliberately left out
 
