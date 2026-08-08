@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { products } from "@/content/products";
+import JsonLd from "@/components/json-ld";
+import { SITE_URL } from "@/lib/site";
+import { products, productSlugParams } from "@/content/products";
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
-}
+export const generateStaticParams = productSlugParams;
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const product = products.find((p) => p.slug === params.slug);
@@ -23,6 +23,16 @@ export default function TechnologyDetailPage({ params }: { params: { slug: strin
 
   return (
     <section className="relative overflow-hidden bg-navy">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: product.name,
+          description: product.whatItDoes,
+          applicationCategory: product.category,
+          url: `${SITE_URL}/technologies/${product.slug}`,
+        }}
+      />
       <div
         aria-hidden="true"
         className="absolute inset-0"

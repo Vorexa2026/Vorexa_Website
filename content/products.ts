@@ -105,3 +105,7 @@ export const contactEmail = "info@vorexa.co.za";
 export const contactPhone = "021 180 4244";
 export const contactPhoneHref = "+27211804244";
 export const contactAddress = "Office Suites, Okavango Road, Belami Ave, Cape Gate, Brackenfell, 7560";
+
+// Shared by app/technologies/[slug]/page.tsx and its opengraph-image.tsx —
+// both need the same static params, and Next doesn't infer one from the other.
+export const productSlugParams = () => products.map((p) => ({ slug: p.slug }));

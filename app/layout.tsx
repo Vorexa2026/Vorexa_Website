@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import JsonLd from "@/components/json-ld";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -22,10 +26,12 @@ const title = "Vorexa | Intelligence. Systems. Decisions.";
 const description =
   "Vorexa builds focused technology systems for clearer operations, connected information and better decisions.";
 
-// NOTE: metadataBase intentionally left unset — the production domain has not
-// been confirmed yet (see HANDOVER.md). Set it once the domain is final so
-// Open Graph / Twitter image URLs resolve to absolute paths.
+// NOTE: SITE_URL (lib/site.ts) currently falls back to a placeholder domain —
+// update the SITE_URL env var once the production domain is confirmed (see
+// HANDOVER.md). Nothing else needs to change; metadataBase and every other
+// consumer read from that one constant.
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: title,
     template: "%s | Vorexa",
@@ -58,6 +64,24 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} overflow-x-hidden bg-offwhite font-body text-charcoal antialiased`}
       >
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: "Vorexa",
+                url: SITE_URL,
+                logo: `${SITE_URL}/brand/vorexa-symbol.png`,
+              },
+              {
+                "@type": "WebSite",
+                name: "Vorexa",
+                url: SITE_URL,
+              },
+            ],
+          }}
+        />
         <a
           href="#main"
           className="absolute left-[-9999px] top-0 z-[100] bg-navy px-5 py-3 text-[14px] font-semibold text-white focus:left-4 focus:top-4"
@@ -67,6 +91,8 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

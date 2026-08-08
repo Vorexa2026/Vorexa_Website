@@ -1,5 +1,30 @@
 # Handover Note
 
+## Industry benchmark review: quick-win pass
+
+A full plan for this pass lives in the session's plan file; summarized here for the permanent record. Requested: a review of the site against comparable industry offerings (venture-studio/multi-product tech group sites, B2B SaaS conventions) and a prioritized list of quick fixes. Confirmed scope: add Vercel Analytics, add a homepage portfolio-preview strip, domain confirmed as linked via Vercel (exact string not available from the connected Vercel account — see "Open item" below).
+
+**What changed:**
+
+- **`lib/site.ts`** — single `SITE_URL` source of truth (env var, placeholder fallback `https://vorexa.co.za`). Every item below reads from this one constant.
+- **`app/sitemap.ts`, `app/robots.ts`** — standard Next.js file-convention SEO plumbing. Sitemap is generated from the existing `products` array, not hardcoded.
+- **`metadataBase`** now set in `app/layout.tsx` (was previously unset, flagged as a launch blocker in the prior round) — Open Graph/Twitter image URLs now resolve to real absolute URLs.
+- **JSON-LD structured data**: `components/json-ld.tsx` + Organization/WebSite schema in the root layout, and `SoftwareApplication` schema on each product page — deliberately omitting `offers`, `aggregateRating`, and `operatingSystem` since every product is "In development"; asserting any of those would overstate their status.
+- **`app/manifest.ts`** — minimal web app manifest (brand colors, existing icon).
+- **`app/apple-icon.png`** — proper 180×180 iOS home-screen icon (opaque navy background per Apple's guidance against transparency), generated from the existing symbol asset.
+- **Vercel Analytics + Speed Insights** (`@vercel/analytics`, `@vercel/speed-insights`) mounted in the root layout. Their tracking scripts 404 harmlessly in local `next start` (Vercel only serves `/_vercel/insights/script.js` on the actual platform) and no-op gracefully — this is expected, not a bug. Data will appear in the Vercel dashboard once Web Analytics is toggled on there (a dashboard step, not a code step).
+- **`app/llms.txt/route.ts`** — an AI-answer-engine-facing summary (About, per-product descriptions, contact, legal links), generated from `content/products.ts` at request time rather than hand-duplicated as a static file, so it can't drift out of sync. Includes an explicit "Important context for AI systems" section stating no product is live/purchasable/open for signup yet — the part that actually prevents an AI summarizer from overstating Vorexa's stage.
+- **Homepage portfolio-preview strip** (`components/product-strip.tsx`) — a compact, logo-chip-plus-name row for all 5 products, each linking to its own product page, plus a "View all technologies" link to `/technologies`. Added directly below the existing hero on `app/page.tsx` (hero itself untouched). This was the fix for an outside reviewer's read of the previous hero-only homepage as feeling like "a landing page placeholder."
+- **`app/not-found.tsx`** — switched from a leftover light theme to dark navy, matching every other route since the dark-theme conversion two rounds ago.
+- **Per-page Open Graph images** (`opengraph-image.tsx` under `app/`, `app/about/`, `app/technologies/`, `app/contact/`, and one parameterized file at `app/technologies/[slug]/opengraph-image.tsx` covering all 5 products) — every major page now generates its own distinct 1200×630 share-preview image instead of all pages showing the same generic lockup card. Shared visual template in `lib/og.tsx`, shared font-loading in `lib/og-font.ts`.
+  - **Font files**: Satori (the renderer behind `next/og`'s `ImageResponse`) needs raw font bytes, which `next/font/google` doesn't expose. Downloaded static (non-variable) Bold/SemiBold TTFs for Space Grotesk and Inter from jsDelivr's fontsource CDN — committed at `assets/fonts/` (not `public/`, since these are build-time-only assets, not served directly).
+  - **Real gotcha hit and fixed**: the initially-planned `fetch(new URL("../assets/...", import.meta.url))` pattern for loading those fonts **failed the build** — it resolves to a bundled public-asset path at build time in this Next version's Node runtime, which isn't a URL `fetch()` can load server-side. Switched to direct `fs.readFile` (same approach already used for embedding the logo PNG in the template), which works reliably. Documented in `lib/og-font.ts` so it isn't rediscovered the hard way again.
+  - Static, flat navy background (no gradients) — Satori's CSS support doesn't reliably handle them.
+
+## Open item needing input
+
+**Exact production domain string.** A Vercel MCP lookup on the connected account didn't find a project matching this site (checked `list_projects` against team "MJW" — none of the 6 projects listed matched). `SITE_URL` currently falls back to a placeholder (`https://vorexa.co.za`, matching the existing contact email's domain). Set the real value as the `SITE_URL` environment variable in the Vercel project settings — everything above (sitemap, robots, structured data, OG image URLs) reads from that one place, so this is a single env var change, not a code change.
+
 ## Second round of post-launch-review fixes
 
 Further feedback from the deployed Vercel preview, addressed:

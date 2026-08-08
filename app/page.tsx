@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { PrimaryLink, TextLink } from "@/components/button";
+import ProductStrip from "@/components/product-strip";
 
 export default function Home() {
   return (
+    <>
     <section className="relative overflow-hidden bg-navy" aria-labelledby="hero-heading">
       <div
         aria-hidden="true"
@@ -75,5 +77,20 @@ export default function Home() {
         </div>
       </div>
     </section>
+
+    <section className="border-t border-white/10 bg-navy">
+      <div className="mx-auto max-w-content px-5 py-14 sm:px-10">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+          <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
+            Our technologies
+          </p>
+          <TextLink href="/technologies" light>
+            View all technologies
+          </TextLink>
+        </div>
+        <ProductStrip />
+      </div>
+    </section>
+    </>
   );
 }
