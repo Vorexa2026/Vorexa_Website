@@ -86,6 +86,23 @@ Per brief section 15: no extra routes, no contact form (no delivery/privacy
 handling confirmed), no analytics, no CMS, no theme switcher, no social icons,
 no fabricated testimonials/claims/history.
 
+## Supabase (not wired up)
+
+A Supabase project was shared for possible future use on the site:
+
+- URL: `https://maepyzofzytsmqukinlp.supabase.co`
+- Publishable key: `sb_publishable_lPHUzyVni2BAuMKqfNJghg_V6LLvayA`
+
+Per instruction, this is filed for later — nothing in the codebase uses it yet.
+It doesn't correspond to either Supabase project visible from this session's
+connected Supabase account, so its schema wasn't inspected. The most likely use
+is backing a real contact form (the current site only offers a `mailto:` link,
+since no form-delivery method was confirmed at build time — see "What was
+deliberately left out" above). When there's a concrete feature to build, wire
+the key in via an environment variable (`NEXT_PUBLIC_SUPABASE_URL` /
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`), not hardcoded — publishable keys are safe to
+expose client-side, but they still shouldn't be duplicated as string literals.
+
 ## Verification done
 
 - `npm run build` and `npm run lint` — both clean.
