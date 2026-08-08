@@ -8,6 +8,27 @@ export const metadata: Metadata = {
     "Vorexa was founded to close a specific gap: the systems used to run complex operations are fragmented.",
 };
 
+function Label({
+  children,
+  tone = "muted",
+}: {
+  children: React.ReactNode;
+  tone?: "muted" | "navy";
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="h-px w-7 bg-teal" aria-hidden="true" />
+      <p
+        className={`font-body text-[13px] font-semibold uppercase tracking-[0.12em] ${
+          tone === "navy" ? "text-navy" : "text-muted"
+        }`}
+      >
+        {children}
+      </p>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -36,15 +57,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-white">
+      <section className="border-b border-border" style={{ background: "#F1F6FF" }}>
         <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
           <div className="flex flex-col gap-10 md:flex-row md:gap-20">
             <div className="md:w-[34%] md:flex-shrink-0">
-              <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-muted">
-                Founder
-              </p>
+              <Label tone="navy">Founder</Label>
             </div>
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0 flex-1 border-l-2 border-blue pl-8">
               <p className="max-w-[62ch] text-[18px] leading-relaxed text-charcoal sm:text-[19px]">
                 Vorexa was founded by Mornay Walters, who leads the group&rsquo;s product
                 direction. His background is in operational management within complex, multi
@@ -61,19 +80,17 @@ export default function AboutPage() {
         <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
           <div className="flex flex-col gap-10 md:flex-row md:gap-20">
             <div className="md:w-[34%] md:flex-shrink-0">
-              <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-muted">
-                How we work
-              </p>
+              <Label>How we work</Label>
             </div>
             <div className="min-w-0 flex-1">
               <ol className="flex flex-col">
                 {howWeWork.map((text, i) => (
                   <li
                     key={text}
-                    className="flex items-baseline gap-6 border-t border-border py-5 first:border-t-0"
+                    className="flex items-center gap-6 border-t border-border py-5 first:border-t-0"
                   >
-                    <span className="flex-shrink-0 font-body text-[13px] text-muted">
-                      {String(i + 1).padStart(2, "0")}
+                    <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-blue font-body text-[20px] font-bold text-white">
+                      {i + 1}
                     </span>
                     <span className="font-heading text-[19px] font-medium leading-snug text-navy sm:text-[22px]">
                       {text}

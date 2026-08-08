@@ -6,17 +6,25 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/technologies/${product.slug}`}
-      className="group flex flex-col border border-border bg-white p-7 transition-all duration-200 hover:-translate-y-1 hover:border-blue"
+      className="group flex flex-col border-t-4 border-blue bg-white p-7 transition-all duration-200 hover:-translate-y-1 hover:border-t-teal"
     >
       <div className="mb-5 flex items-start justify-between gap-3">
-        <Image
-          src={product.logo}
-          alt={`${product.name} logo`}
-          width={40}
-          height={40}
-          className="h-10 w-10 object-contain"
-        />
-        <span className="mt-1 flex flex-shrink-0 items-center gap-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">
+        <div
+          className="flex h-14 w-14 items-center justify-center rounded-full"
+          style={{ background: "#F1F6FF" }}
+        >
+          <Image
+            src={product.logo}
+            alt={`${product.name} logo`}
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
+          />
+        </div>
+        <span
+          className="mt-1 flex flex-shrink-0 items-center gap-1.5 rounded-full px-3 py-1 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-navy"
+          style={{ background: "#E7F7F5" }}
+        >
           <span className="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden="true" />
           {product.status}
         </span>

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function TechnologiesPage() {
   return (
-    <section className="bg-white">
+    <section style={{ background: "#F1F6FF" }}>
       <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
         <SectionHeading
           eyebrow="Technologies"

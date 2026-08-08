@@ -8,17 +8,8 @@ export default function Home() {
         aria-hidden="true"
         className="absolute inset-0"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
           background:
-            "radial-gradient(120% 90% at 78% 42%, rgba(20,121,255,0.18), transparent 60%)",
+            "radial-gradient(120% 90% at 78% 42%, rgba(20,121,255,0.22), transparent 60%), radial-gradient(80% 70% at 82% 55%, rgba(0,182,166,0.14), transparent 60%)",
         }}
       />
 
@@ -57,11 +48,13 @@ export default function Home() {
           aria-hidden="true"
           className="relative hidden aspect-square w-full max-w-[320px] flex-shrink-0 items-center justify-center md:flex"
         >
-          <div className="absolute inset-0 border border-white/10" />
-          <div className="absolute left-[-1px] top-[-1px] h-4 w-4 border-l-2 border-t-2 border-blue" />
-          <div className="absolute bottom-[-1px] right-[-1px] h-4 w-4 border-b-2 border-r-2 border-teal" />
-          <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
-          <div className="absolute bottom-0 left-1/2 top-0 w-px bg-white/10" />
+          <div
+            className="absolute inset-0 rounded-full opacity-70"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(20,121,255,0.16), transparent 75%)",
+            }}
+          />
           <Image
             src="/brand/vorexa-symbol.png"
             alt=""

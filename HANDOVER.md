@@ -1,5 +1,26 @@
 # Handover Note
 
+## Post-launch-review fixes (post v2)
+
+Feedback from the deployed Vercel preview, addressed:
+
+- **Legal pages**: "Last updated" set to June 2026 on `/privacy` and `/terms`;
+  Privacy's Information Officer set to Mornay Walters. Both were previously
+  literal `[date]`/`[Name]` placeholders — now filled in, so their HTML-comment
+  TODO flags and the now-unused flag helper were removed.
+- **Home hero decoration**: removed the full-hero background grid pattern and
+  the bordered/corner-bracketed box around the X symbol (felt like a technical
+  wireframe rather than a mark). Replaced with just the symbol on a soft radial
+  glow — same restrained motif, no lines or blocks.
+- **More colour on `/about` and `/technologies`**: added a light blue-tinted
+  background section, a blue left-border accent and numbered blue badge
+  circles on `/about`; a light blue page wash, blue top-border accent and
+  teal/navy status pills, and soft blue logo chips on the product cards and
+  detail pages. Every new colour pairing was contrast-checked against WCAG AA
+  — the initial tint (`#EAF2FF`) put muted grey text at 4.42:1 against the
+  4.5:1 minimum, so it was lightened to `#F1F6FF` (4.59:1) and the Founder
+  section's label switched to navy rather than muted for extra margin.
+
 Built from the supplied `Vorexa_Claude_Design_Brief.md`, the Vorexa brand asset
 folder (Google Drive), and a follow-up "v2 launch readiness" prompt that
 extended the original single-page brief into a multi-page site. The original

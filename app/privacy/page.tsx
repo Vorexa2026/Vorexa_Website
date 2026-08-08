@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   description: "How Vorexa collects, uses and protects personal information, in accordance with POPIA.",
 };
 
-function LaunchFlag({ note }: { note: string }) {
-  return <div dangerouslySetInnerHTML={{ __html: `<!-- TODO(launch): ${note} -->` }} />;
-}
-
 const sections: { heading: string; body: React.ReactNode }[] = [
   {
     heading: "Information we collect",
@@ -83,8 +79,7 @@ export default function PrivacyPage() {
           <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-navy">
             Privacy Policy
           </h1>
-          <p className="mb-2 text-[15px] text-muted">Last updated: [date]</p>
-          <LaunchFlag note="fill in the publication date above before going live." />
+          <p className="mb-2 text-[15px] text-muted">Last updated: June 2026</p>
 
           <p className="mb-10 mt-6 text-[18px] leading-relaxed text-charcoal">
             Vorexa (Pty) Ltd (&ldquo;Vorexa&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is
@@ -107,12 +102,11 @@ export default function PrivacyPage() {
                 Information officer
               </p>
               <p className="text-[17px] leading-relaxed text-charcoal">
-                [Name],{" "}
+                Mornay Walters,{" "}
                 <a href={`mailto:${contactEmail}`} className="text-navy underline hover:text-blue">
                   {contactEmail}
                 </a>
               </p>
-              <LaunchFlag note="supply the Information Officer's name before going live — do not invent one." />
             </div>
           </div>
         </div>

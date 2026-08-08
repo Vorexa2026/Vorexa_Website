@@ -69,12 +69,7 @@ export default function TermsPage() {
           <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-navy">
             Terms of Use
           </h1>
-          <p className="mb-2 text-[15px] text-muted">Last updated: [date]</p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: "<!-- TODO(launch): fill in the publication date above before going live. -->",
-            }}
-          />
+          <p className="mb-2 text-[15px] text-muted">Last updated: June 2026</p>
 
           <p className="mb-10 mt-6 text-[18px] leading-relaxed text-charcoal">
             These terms govern use of the Vorexa website. By accessing this site, you agree to
