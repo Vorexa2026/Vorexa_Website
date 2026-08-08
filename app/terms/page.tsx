@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
 import { contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
@@ -22,9 +23,10 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     heading: "Product status",
     body: (
       <p>
-        Products referenced on this site are at varying stages of development. Descriptions
-        reflect current intent and functionality and may change without notice. No product
-        listed constitutes an offer of sale unless explicitly stated.
+        Products referenced on this site are at varying stages of availability, and each product
+        page states its current status. Descriptions reflect current intent and functionality and
+        may change without notice. No product listed constitutes an offer of sale unless
+        explicitly stated.
       </p>
     ),
   },
@@ -54,7 +56,7 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     heading: "Contact",
     body: (
       <p>
-        <a href={`mailto:${contactEmail}`} className="text-navy underline hover:text-blue">
+        <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
           {contactEmail}
         </a>
       </p>
@@ -64,31 +66,23 @@ const sections: { heading: string; body: React.ReactNode }[] = [
 
 export default function TermsPage() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
-        <div className="max-w-[65ch]">
-          <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-navy">
-            Terms of Service
-          </h1>
-          <p className="mb-2 text-[15px] text-muted">Last updated: June 2026</p>
-
-          <p className="mb-10 mt-6 text-[18px] leading-relaxed text-charcoal">
-            These terms govern use of the Vorexa website. By accessing this site, you agree to
-            these terms.
-          </p>
-
-          <div className="flex flex-col gap-10">
-            {sections.map((section) => (
-              <div key={section.heading}>
-                <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-muted">
-                  {section.heading}
-                </p>
-                <div className="text-[17px] leading-relaxed text-charcoal">{section.body}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+    <LegalPage
+      title="Terms of Service"
+      lastUpdated="June 2026"
+      intro={
+        <p>
+          These terms govern use of the Vorexa website. By accessing this site, you agree to these
+          terms.
+        </p>
+      }
+    >
+      <div className="flex flex-col gap-10">
+        {sections.map((section) => (
+          <LegalSection key={section.heading} heading={section.heading}>
+            {section.body}
+          </LegalSection>
+        ))}
       </div>
-    </section>
+    </LegalPage>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
 import { contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ const sections: { heading: string; body: React.ReactNode }[] = [
       <p>
         Under POPIA, you have the right to access, correct or request deletion of your personal
         information held by us. To exercise these rights, contact us at{" "}
-        <a href={`mailto:${contactEmail}`} className="text-navy underline hover:text-blue">
+        <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
           {contactEmail}
         </a>
         .
@@ -63,7 +64,7 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     body: (
       <p>
         Questions about this policy can be directed to{" "}
-        <a href={`mailto:${contactEmail}`} className="text-navy underline hover:text-blue">
+        <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
           {contactEmail}
         </a>
         .
@@ -74,44 +75,33 @@ const sections: { heading: string; body: React.ReactNode }[] = [
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
-        <div className="max-w-[65ch]">
-          <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-navy">
-            Privacy Policy
-          </h1>
-          <p className="mb-2 text-[15px] text-muted">Last updated: June 2026</p>
+    <LegalPage
+      title="Privacy Policy"
+      lastUpdated="June 2026"
+      intro={
+        <p>
+          Vorexa (Pty) Ltd (&ldquo;Vorexa&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is
+          committed to protecting your personal information in accordance with the Protection of
+          Personal Information Act 4 of 2013 (POPIA).
+        </p>
+      }
+    >
+      <div className="flex flex-col gap-10">
+        {sections.map((section) => (
+          <LegalSection key={section.heading} heading={section.heading}>
+            {section.body}
+          </LegalSection>
+        ))}
 
-          <p className="mb-10 mt-6 text-[18px] leading-relaxed text-charcoal">
-            Vorexa (Pty) Ltd (&ldquo;Vorexa&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is
-            committed to protecting your personal information in accordance with the Protection
-            of Personal Information Act 4 of 2013 (POPIA).
+        <LegalSection heading="Information officer">
+          <p>
+            Mornay Walters,{" "}
+            <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
+              {contactEmail}
+            </a>
           </p>
-
-          <div className="flex flex-col gap-10">
-            {sections.map((section) => (
-              <div key={section.heading}>
-                <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-muted">
-                  {section.heading}
-                </p>
-                <div className="text-[17px] leading-relaxed text-charcoal">{section.body}</div>
-              </div>
-            ))}
-
-            <div>
-              <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-muted">
-                Information officer
-              </p>
-              <p className="text-[17px] leading-relaxed text-charcoal">
-                Mornay Walters,{" "}
-                <a href={`mailto:${contactEmail}`} className="text-navy underline hover:text-blue">
-                  {contactEmail}
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
+        </LegalSection>
       </div>
-    </section>
+    </LegalPage>
   );
 }
