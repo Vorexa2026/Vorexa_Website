@@ -121,9 +121,12 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+// Route paths are deliberately unchanged (/privacy, /terms are already indexed
+// and listed in the sitemap) — only the public labels changed.
 export const legalLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms of Use" },
+  { href: "/legal-notice", label: "Legal Notice" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/privacy", label: "Data & Privacy" },
 ];
 
 export const contactEmail = "info@vorexa.co.za";

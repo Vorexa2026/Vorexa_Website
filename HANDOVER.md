@@ -1,5 +1,25 @@
 # Handover Note
 
+## Contact form diagnosis + legal footer
+
+### Contact form: root cause found
+
+Posting a valid payload to the live endpoint returned **503 before Resend was ever called** — confirming `RESEND_API_KEY` is **not set in the Vercel project**. That is the whole reason the Resend dashboard shows "No sent emails yet": no send was ever attempted. The earlier `onboarding@resend.dev` concern was real but secondary.
+
+**To make the form work, add `RESEND_API_KEY` to the Vercel project environment variables and redeploy.** Nothing else is required — the Resend account owner address is `info@vorexa.co.za`, which is also where enquiries are sent, and Resend's shared testing sender delivers to the account owner. So it will work immediately on the default sender.
+
+The sender is now configurable via `CONTACT_FROM_EMAIL` (`app/api/contact/route.ts`), defaulting to `Vorexa Website <onboarding@resend.dev>`. Once `vorexa.co.za` is verified in Resend (add domain, add the DNS records in cPanel Zone Editor, wait for verification), set `CONTACT_FROM_EMAIL="Vorexa <website@vorexa.co.za>"` for branded sending. No code change needed.
+
+Resend failures are now logged server-side (`console.error`, visible in Vercel runtime logs) so a rejected send is diagnosable; the browser still gets a generic message.
+
+### Legal footer
+
+Footer legal links are now **Legal Notice, Terms of Service, Data & Privacy**, matching the MJW structure.
+
+Route paths were deliberately left as `/terms` and `/privacy` — they are already indexed and in the sitemap, so only the public labels and page titles changed. A new `/legal-notice` page was added (company, founder, registered address, contact, responsibility for content, IP, external links), added to the sitemap, and reflected in `llms.txt`.
+
+**No CIPC registration number is published** — it was never supplied, and inventing or placeholder-ing one publicly would be worse than omitting it. Add it to `app/legal-notice/page.tsx` as another `<Row>` when available.
+
 ## Live-site review + MJW content migration
 
 Triggered by a review of the now-live https://www.vorexa.co.za. Three technical faults were found and fixed, and the product content was rebuilt from the MJW site's (much stronger) source copy ahead of that site being retired.

@@ -63,8 +63,9 @@ ${book.title} — ${book.subtitle}. ${book.description} Available at ${book.url}
 
 ## Legal
 
-- Privacy Policy: ${SITE_URL}/privacy
-- Terms of Use: ${SITE_URL}/terms
+- Legal Notice: ${SITE_URL}/legal-notice
+- Terms of Service: ${SITE_URL}/terms
+- Data & Privacy: ${SITE_URL}/privacy
 `;
 
   return new Response(body, {

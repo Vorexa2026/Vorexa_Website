@@ -48,11 +48,18 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
 
+  // Sender address. Resend will only accept a From address on a domain you have
+  // verified in their dashboard — with one exception: onboarding@resend.dev,
+  // their shared testing sender, which delivers only to the Resend account
+  // owner's own address (currently info@vorexa.co.za, which is where enquiries
+  // go anyway). So the default below works immediately, and upgrading to a
+  // branded sender is just setting CONTACT_FROM_EMAIL once the domain's DNS
+  // records are verified. See HANDOVER.md.
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Vorexa Website <onboarding@resend.dev>";
+
   try {
     const { error } = await resend.emails.send({
-      // NOTE: replace with a verified sending domain in Resend before launch —
-      // onboarding@resend.dev only works for testing / the account owner's own address.
-      from: "Vorexa Website <onboarding@resend.dev>",
+      from,
       to: contactEmail,
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` (${company})` : ""} — ${enquiryType}`,
@@ -67,12 +74,17 @@ export async function POST(request: Request) {
     });
 
     if (error) {
+      // Logged server-side (visible in Vercel runtime logs) so a delivery
+      // failure is diagnosable — e.g. an unverified sending domain — without
+      // leaking provider detail to the browser.
+      console.error("[contact] Resend rejected the send:", error);
       return NextResponse.json(
         { error: "Something went wrong sending your message. Please try again shortly." },
         { status: 502 }
       );
     }
-  } catch {
+  } catch (err) {
+    console.error("[contact] Unexpected error sending mail:", err);
     return NextResponse.json(
       { error: "Something went wrong sending your message. Please try again shortly." },
       { status: 502 }

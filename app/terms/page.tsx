@@ -3,7 +3,7 @@ import { contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
-  title: "Terms of Use",
+  title: "Terms of Service",
   description: "The terms governing use of the Vorexa website.",
 };
 
@@ -68,7 +68,7 @@ export default function TermsPage() {
       <div className="mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
         <div className="max-w-[65ch]">
           <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-navy">
-            Terms of Use
+            Terms of Service
           </h1>
           <p className="mb-2 text-[15px] text-muted">Last updated: June 2026</p>
 
