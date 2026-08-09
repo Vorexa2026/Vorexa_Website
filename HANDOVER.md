@@ -209,7 +209,7 @@ Supplied directly and used in the Contact section (`content/products.ts`):
 
 - Email: `info@vorexa.co.za`
 - Phone: `021 180 4244`
-- Address: Office Suites, Okavango Road, Belami Ave, Cape Gate, Brackenfell, 7560
+- Address: Office Suites, Roslyn Street, Brackenfell, 7560
 
 ## Placeholders still requiring confirmation
 

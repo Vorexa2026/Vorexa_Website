@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
-import { contactEmail } from "@/content/products";
+import { contactAddress, contactEmail } from "@/content/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
@@ -62,13 +62,16 @@ const sections: { heading: string; body: React.ReactNode }[] = [
   {
     heading: "Contact",
     body: (
-      <p>
-        Questions about this policy can be directed to{" "}
-        <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
-          {contactEmail}
-        </a>
-        .
-      </p>
+      <>
+        <p>
+          Questions about this policy can be directed to{" "}
+          <a href={`mailto:${contactEmail}`} className={legalLinkClass}>
+            {contactEmail}
+          </a>
+          .
+        </p>
+        <p className="mt-3">Vorexa (Pty) Ltd, {contactAddress}.</p>
+      </>
     ),
   },
 ];
