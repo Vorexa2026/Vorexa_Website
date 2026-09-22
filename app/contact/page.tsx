@@ -31,12 +31,12 @@ export default function ContactPage() {
 
             <div className="mt-9 space-y-2 font-body text-[14px] leading-relaxed text-white/70">
               <p>
-                <a href={`mailto:${contactEmail}`} className="hover:text-teal">
+                <a href={`mailto:${contactEmail}`} className="hover:text-cyan">
                   {contactEmail}
                 </a>
               </p>
               <p>
-                <a href={`tel:${contactPhoneHref}`} className="hover:text-teal">
+                <a href={`tel:${contactPhoneHref}`} className="hover:text-cyan">
                   {contactPhone}
                 </a>
               </p>

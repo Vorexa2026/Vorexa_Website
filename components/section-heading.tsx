@@ -12,7 +12,7 @@ export default function SectionHeading({
   headingId?: string;
 }) {
   const headingColor = variant === "light" ? "text-white" : "text-navy";
-  const eyebrowColor = variant === "light" ? "text-teal" : "text-muted";
+  const eyebrowColor = variant === "light" ? "text-cyan" : "text-muted";
   const introColor = variant === "light" ? "text-[#A9B4C4]" : "text-muted";
 
   return (

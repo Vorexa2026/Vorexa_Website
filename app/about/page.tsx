@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import SectionHeading from "@/components/section-heading";
+import NumberedSteps from "@/components/numbered-steps";
 import { book, howWeBuild } from "@/content/products";
 
 export const metadata: Metadata = {
@@ -13,8 +14,8 @@ export const metadata: Metadata = {
 function Label({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="h-px w-7 bg-teal" aria-hidden="true" />
-      <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
+      <span className="h-px w-7 bg-cyan" aria-hidden="true" />
+      <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-cyan">
         {children}
       </p>
     </div>
@@ -60,7 +61,7 @@ export default function AboutPage() {
                 "Built from real operational friction",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-[14px] text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden="true" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden="true" />
                   {item}
                 </li>
               ))}
@@ -91,15 +92,16 @@ export default function AboutPage() {
           <div className="min-w-0 flex-1 border-l-2 border-blue pl-8">
             <p className="mb-6 max-w-[62ch] text-[18px] leading-relaxed text-white sm:text-[19px]">
               Vorexa was not created from a business plan or a startup accelerator. It grew from
-              years of working inside property operations, financial administration and family
-              coordination, and repeatedly hitting the same problem: the available tools were
-              either too generic, too complex, or simply did not exist.
+              years of working inside commercial property operations and repeatedly hitting the
+              same problem: the available tools were either too generic, too complex, or simply
+              did not exist, and the gap had to be closed with software, not another spreadsheet.
             </p>
             <p className="max-w-[62ch] text-[18px] leading-relaxed text-[#A9B4C4] sm:text-[19px]">
               With a professional background in commercial property management, and direct
-              experience across tenant operations, financial reporting, maintenance workflows,
-              compliance and family administration, each Vorexa platform is built from practical
-              operational friction rather than from market research.
+              experience across tenant operations, financial reporting, maintenance workflows and
+              compliance, Vorexa&rsquo;s products are designed at the intersection of operational
+              experience and software product development, structuring real workflows into
+              systems built for daily use rather than for a pitch deck.
             </p>
           </div>
         </div>
@@ -113,26 +115,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="min-w-0 flex-1">
-            <ol className="flex flex-col">
-              {howWeBuild.map((item, i) => (
-                <li
-                  key={item.title}
-                  className="flex items-start gap-6 border-t border-white/10 py-6 first:border-t-0 first:pt-0"
-                >
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-blue font-body text-[20px] font-bold text-white">
-                    {i + 1}
-                  </span>
-                  <span>
-                    <span className="block font-heading text-[19px] font-semibold leading-snug text-white sm:text-[21px]">
-                      {item.title}
-                    </span>
-                    <span className="mt-2 block max-w-[54ch] text-[16px] leading-relaxed text-[#A9B4C4]">
-                      {item.body}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ol>
+            <NumberedSteps steps={howWeBuild} />
           </div>
         </div>
 
@@ -154,7 +137,7 @@ export default function AboutPage() {
                 <h2 className="font-heading text-[24px] font-semibold text-white sm:text-[28px]">
                   {book.title}
                 </h2>
-                <p className="mt-1 text-[15px] font-semibold text-teal">{book.subtitle}</p>
+                <p className="mt-1 text-[15px] font-semibold text-cyan">{book.subtitle}</p>
                 <p className="mt-4 max-w-[54ch] text-[16px] leading-relaxed text-[#A9B4C4]">
                   {book.description}
                 </p>
@@ -162,7 +145,7 @@ export default function AboutPage() {
                   href={book.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex min-h-[44px] items-center border-b border-white/35 text-[16px] font-semibold text-white transition-colors duration-200 hover:border-teal hover:text-teal"
+                  className="mt-6 inline-flex min-h-[44px] items-center border-b border-white/35 text-[16px] font-semibold text-white transition-colors duration-200 hover:border-cyan hover:text-cyan"
                 >
                   Read on Amazon
                 </a>

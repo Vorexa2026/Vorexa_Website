@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1 border-t border-white/10 py-5 sm:flex-row sm:gap-8">
-      <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal sm:w-[220px] sm:flex-shrink-0">
+      <p className="font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-cyan sm:w-[220px] sm:flex-shrink-0">
         {label}
       </p>
       <div className="text-[17px] leading-relaxed text-white">{children}</div>
@@ -60,8 +60,8 @@ export default function LegalNoticePage() {
         <LegalSection heading="Intellectual property">
           <p>
             All content on this site, including text, graphics, logos and the product names
-            Notara, Obstrata, Ledgera and Vaulta, is the property of Vorexa (Pty) Ltd unless
-            otherwise stated, and may not be reproduced without written permission.
+            Vorexa Atlas and Vorexa Core, is the property of Vorexa (Pty) Ltd unless otherwise
+            stated, and may not be reproduced without written permission.
           </p>
         </LegalSection>
 

@@ -41,7 +41,7 @@ export async function OgTemplate({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#0B2545",
+        backgroundColor: "#0B1F44",
         padding: "72px",
       }}
     >
@@ -74,7 +74,7 @@ export async function OgTemplate({
             fontWeight: 600,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
-            color: "#00B6A6",
+            color: "#00E5FF",
             marginBottom: 20,
           }}
         >

@@ -51,7 +51,7 @@ export function LegalSection({
 }) {
   return (
     <div>
-      <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-teal">
+      <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-cyan">
         {heading}
       </p>
       <div className="text-[17px] leading-relaxed text-[#A9B4C4]">{children}</div>
@@ -60,4 +60,4 @@ export function LegalSection({
 }
 
 /** Inline link styling that stays legible on the dark background. */
-export const legalLinkClass = "text-white underline underline-offset-4 hover:text-teal";
+export const legalLinkClass = "text-white underline underline-offset-4 hover:text-cyan";

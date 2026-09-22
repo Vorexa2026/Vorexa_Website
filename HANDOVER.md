@@ -1,5 +1,36 @@
 # Handover Note
 
+## Atlas & Core relaunch
+
+The Notara/Obstrata/Ledgera/Vaulta portfolio has been fully retired from the public
+site. Vorexa now presents two production platforms:
+
+- **Vorexa Atlas** — `https://atlas.vorexa.co.za` (property operations)
+- **Vorexa Core** — `https://core.vorexa.co.za` (personal operating system)
+
+`content/products.ts` is still the single source of truth — the `Product` type grew
+`url` (external platform link), `capabilities` (major operational/personal areas),
+`problem`, `philosophy` and `theme` (`"atlas" | "core"`, drives card geometry), and
+`ProductStatus` was collapsed to the single `"Production"` value used going forward.
+Every consumer (cards, detail pages under `/technologies/[slug]`, sitemap, `llms.txt`,
+OG images, JSON-LD) reads from that one array, so there's nowhere else that needs
+editing to add a third product later.
+
+Brand palette moved to the supplied Deep Navy / Royal Blue / Electric Blue / Cyan set
+(`tailwind.config.ts`) — the old teal accent (`#00B6A6`) is now `cyan` (`#00E5FF`)
+throughout; there is no remaining `teal` token in the codebase.
+
+Product logos (`public/brand/products/vorexa-{atlas,core}.png` and matching
+`-lockup.png` full lockups) were derived from the supplied lockup PNGs by cropping to
+the mark and converting the flat white background to a real alpha channel — the
+artwork itself wasn't redrawn. If native transparent exports become available later,
+prefer those over the derived versions.
+
+Legacy product mentions (Notara, Obstrata, Ledgera, Vaulta, "Four platforms", and the
+old three-tier Live/Private beta/In development status model) were removed from every
+public-facing route, including the Legal Notice's IP paragraph.
+
+
 ## Contact form diagnosis + legal footer
 
 ### Contact form: root cause found

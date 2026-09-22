@@ -32,7 +32,7 @@ export function TextLink({
       href={href}
       className={`inline-flex min-h-[44px] items-center border-b text-[16px] font-semibold transition-colors duration-200 ${
         light
-          ? "border-white/35 text-white hover:border-teal hover:text-teal"
+          ? "border-white/35 text-white hover:border-cyan hover:text-cyan"
           : "border-border text-navy hover:border-navy"
       }`}
     >

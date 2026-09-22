@@ -66,7 +66,7 @@ export default function Header() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={`border-b-[3px] bg-navy px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-blue ${
-                isActive(link.href) ? "border-teal" : "border-transparent"
+                isActive(link.href) ? "border-cyan" : "border-transparent"
               }`}
             >
               {link.label}
@@ -111,7 +111,7 @@ export default function Header() {
               aria-current={isActive(link.href) ? "page" : undefined}
               className={`flex min-h-[56px] items-center justify-center bg-navy font-heading text-[18px] font-semibold text-white ${
                 i > 0 ? "mt-2" : ""
-              } ${isActive(link.href) ? "border-b-[3px] border-teal" : "border-b-[3px] border-transparent"}`}
+              } ${isActive(link.href) ? "border-b-[3px] border-cyan" : "border-b-[3px] border-transparent"}`}
             >
               {link.label}
             </Link>
