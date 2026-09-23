@@ -3,35 +3,37 @@ import Link from "next/link";
 import StatusPill from "@/components/status-pill";
 import type { Product } from "@/content/products";
 
-// Atlas reads sharp, architectural and enterprise; Core reads calmer and
-// personal. Same panel, same data model, different geometry and accent.
-const themeStyles: Record<Product["theme"], { card: string; logo: string; accent: string }> = {
+// Shared card geometry, padding, border and hover language across both
+// products — Vorexa Brand Identity v2.1 governing rule: product
+// differentiation is restricted to one material accent, never the
+// underlying component geometry.
+const themeAccent: Record<Product["theme"], { border: string; text: string; dot: string }> = {
   atlas: {
-    card: "border-t-4 border-t-blue",
-    logo: "rounded-lg bg-white/[0.06]",
-    accent: "group-hover:border-t-electric",
+    border: "border-t-atlas-bronze group-hover:border-t-atlas-gold",
+    text: "text-atlas-gold",
+    dot: "bg-atlas-gold",
   },
   core: {
-    card: "rounded-3xl border-t-4 border-t-cyan",
-    logo: "rounded-full bg-white/[0.06]",
-    accent: "group-hover:border-t-cyan",
+    border: "border-t-core-teal group-hover:border-t-core-mint",
+    text: "text-core-mint",
+    dot: "bg-core-mint",
   },
 };
 
 export default function ProductCard({ product }: { product: Product }) {
-  const theme = themeStyles[product.theme];
+  const accent = themeAccent[product.theme];
 
   return (
     <div
-      className={`group flex flex-col border border-white/10 bg-white/[0.04] p-7 transition-all duration-200 hover:-translate-y-1 sm:p-8 ${theme.card} ${theme.accent}`}
+      className={`group flex flex-col rounded-card border border-white/10 border-t-4 bg-panel/60 p-7 transition-all duration-200 hover:-translate-y-1 sm:p-8 ${accent.border}`}
     >
       <div className="mb-6 flex items-start justify-between gap-3">
-        <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center p-2 ${theme.logo}`}>
+        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center">
           <Image
             src={product.logo}
             alt={`${product.name} symbol`}
-            width={40}
-            height={40}
+            width={400}
+            height={296}
             className="h-full w-full object-contain"
           />
         </div>
@@ -43,7 +45,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
       </Link>
-      <p className="mb-3 mt-1 text-[13px] font-semibold uppercase tracking-[0.06em] text-cyan">
+      <p className={`mb-3 mt-1 text-[13px] font-semibold uppercase tracking-[0.06em] ${accent.text}`}>
         {product.category}
       </p>
       <p className="mb-5 text-[15px] font-semibold leading-snug text-white">{product.tagline}</p>
@@ -51,8 +53,8 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <ul className="mb-7 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
         {product.capabilities.slice(0, 6).map((item) => (
-          <li key={item} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9B4C4]">
-            <span className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-cyan" aria-hidden="true" />
+          <li key={item} className="flex items-start gap-2 text-[13px] leading-snug text-coolgray">
+            <span className={`mt-[7px] h-1 w-1 flex-shrink-0 rounded-full ${accent.dot}`} aria-hidden="true" />
             {item}
           </li>
         ))}
@@ -63,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
           href={product.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center justify-center bg-blue px-6 py-3 text-[15px] font-bold text-white transition-colors duration-200 hover:bg-electric"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-card bg-blue px-6 py-3 text-[15px] font-bold text-white transition-colors duration-200 hover:bg-cyan"
         >
           Open {product.name}
         </a>

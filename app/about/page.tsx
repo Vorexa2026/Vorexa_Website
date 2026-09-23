@@ -29,7 +29,7 @@ export default function AboutPage() {
         aria-hidden="true"
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(90% 70% at 85% 10%, rgba(20,121,255,0.14), transparent 60%)",
+          background: "radial-gradient(90% 70% at 85% 10%, rgba(0,122,255,0.14), transparent 60%)",
         }}
       />
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
               operations are fragmented. Information lives in spreadsheets, messages, inboxes and
               memory. Decisions get made without the context that should inform them.
             </p>
-            <p className="mb-8 max-w-[62ch] text-[18px] leading-relaxed text-[#A9B4C4] sm:text-[19px]">
+            <p className="mb-8 max-w-[62ch] text-[18px] leading-relaxed text-coolgray sm:text-[19px]">
               Vorexa&rsquo;s platforms are built by starting inside the operation itself,
               identifying where information breaks down, and designing a system that holds it
               together.
@@ -84,7 +84,7 @@ export default function AboutPage() {
               <p className="mt-4 font-heading text-[20px] font-semibold text-white">
                 Mornay Walters
               </p>
-              <p className="mt-1 text-[14px] leading-relaxed text-[#A9B4C4]">
+              <p className="mt-1 text-[14px] leading-relaxed text-coolgray">
                 Founder and sole operator · Cape Town, South Africa
               </p>
             </div>
@@ -96,7 +96,7 @@ export default function AboutPage() {
               same problem: the available tools were either too generic, too complex, or simply
               did not exist, and the gap had to be closed with software, not another spreadsheet.
             </p>
-            <p className="max-w-[62ch] text-[18px] leading-relaxed text-[#A9B4C4] sm:text-[19px]">
+            <p className="max-w-[62ch] text-[18px] leading-relaxed text-coolgray sm:text-[19px]">
               With a professional background in commercial property management, and direct
               experience across tenant operations, financial reporting, maintenance workflows and
               compliance, Vorexa&rsquo;s products are designed at the intersection of operational
@@ -138,7 +138,7 @@ export default function AboutPage() {
                   {book.title}
                 </h2>
                 <p className="mt-1 text-[15px] font-semibold text-cyan">{book.subtitle}</p>
-                <p className="mt-4 max-w-[54ch] text-[16px] leading-relaxed text-[#A9B4C4]">
+                <p className="mt-4 max-w-[54ch] text-[16px] leading-relaxed text-coolgray">
                   {book.description}
                 </p>
                 <a

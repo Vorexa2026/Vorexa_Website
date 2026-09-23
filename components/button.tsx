@@ -11,7 +11,7 @@ export function PrimaryLink({
   return (
     <Link
       href={href}
-      className="inline-flex min-h-[44px] items-center justify-center bg-blue px-7 py-4 text-[18px] font-bold text-white transition-colors duration-200 hover:bg-navy"
+      className="inline-flex min-h-[44px] items-center justify-center rounded-card bg-blue px-7 py-4 text-[18px] font-bold text-white transition-colors duration-200 hover:bg-cyan"
     >
       {children}
     </Link>

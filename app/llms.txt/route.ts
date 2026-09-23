@@ -11,7 +11,7 @@ export function GET() {
 
   const body = `# Vorexa
 
-> Vorexa is a South African technology company that designs and builds focused operating systems from real operational problems.
+> Operational intelligence, built into systems. Vorexa is a South African technology company that designs and builds focused operating systems from real operational problems.
 
 Vorexa (Pty) Ltd is an independent, founder-operated technology group based in Cape Town, South Africa. It is privately funded and has not raised venture capital. Vorexa develops and operates its own technology products; it is not a consultancy or web-development agency.
 
@@ -48,6 +48,7 @@ ${book.title} — ${book.subtitle}. ${book.description} Available at ${book.url}
 - Legal Notice: ${SITE_URL}/legal-notice
 - Terms of Service: ${SITE_URL}/terms
 - Data & Privacy: ${SITE_URL}/privacy
+- Security & Trust: ${SITE_URL}/security
 `;
 
   return new Response(body, {

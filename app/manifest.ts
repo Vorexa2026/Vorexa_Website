@@ -5,10 +5,10 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Vorexa",
     short_name: "Vorexa",
     description:
-      "Vorexa builds focused technology systems for clearer operations, connected information and better decisions.",
+      "Vorexa designs focused operating systems that turn fragmented information and workflows into connected environments for action, control and better decisions.",
     start_url: "/",
     display: "standalone",
-    background_color: "#F8FAFC",
+    background_color: "#F7FAFC",
     theme_color: "#0B1F44",
     icons: [{ src: "/icon.png", sizes: "512x512", type: "image/png" }],
   };

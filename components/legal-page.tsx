@@ -18,7 +18,7 @@ export function LegalPage({
         aria-hidden="true"
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(80% 60% at 85% 0%, rgba(20,121,255,0.12), transparent 60%)",
+          background: "radial-gradient(80% 60% at 85% 0%, rgba(0,122,255,0.12), transparent 60%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
@@ -26,10 +26,10 @@ export function LegalPage({
           <h1 className="mb-3 font-heading text-[clamp(2rem,4.2vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.02em] text-white">
             {title}
           </h1>
-          <p className="text-[15px] text-[#A9B4C4]">Last updated: {lastUpdated}</p>
+          <p className="text-[15px] text-coolgray">Last updated: {lastUpdated}</p>
 
           {intro ? (
-            <div className="mb-12 mt-10 text-[18px] leading-relaxed text-[#A9B4C4]">{intro}</div>
+            <div className="mb-12 mt-10 text-[18px] leading-relaxed text-coolgray">{intro}</div>
           ) : (
             <div className="mb-12" />
           )}
@@ -54,7 +54,7 @@ export function LegalSection({
       <p className="mb-3 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-cyan">
         {heading}
       </p>
-      <div className="text-[17px] leading-relaxed text-[#A9B4C4]">{children}</div>
+      <div className="text-[17px] leading-relaxed text-coolgray">{children}</div>
     </div>
   );
 }

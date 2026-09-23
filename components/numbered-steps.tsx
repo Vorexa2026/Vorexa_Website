@@ -13,7 +13,7 @@ export default function NumberedSteps({ steps }: { steps: { title: string; body:
             <span className="block font-heading text-[19px] font-semibold leading-snug text-white sm:text-[21px]">
               {item.title}
             </span>
-            <span className="mt-2 block max-w-[54ch] text-[16px] leading-relaxed text-[#A9B4C4]">
+            <span className="mt-2 block max-w-[54ch] text-[16px] leading-relaxed text-coolgray">
               {item.body}
             </span>
           </span>

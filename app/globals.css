@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background: #f8fafc;
+  background: #f7fafc;
   color: #1a1d24;
 }
 
@@ -26,6 +26,6 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid #1d4ed8;
+  outline: 2px solid #007aff;
   outline-offset: 3px;
 }

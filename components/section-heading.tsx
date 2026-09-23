@@ -13,7 +13,7 @@ export default function SectionHeading({
 }) {
   const headingColor = variant === "light" ? "text-white" : "text-navy";
   const eyebrowColor = variant === "light" ? "text-cyan" : "text-muted";
-  const introColor = variant === "light" ? "text-[#A9B4C4]" : "text-muted";
+  const introColor = variant === "light" ? "text-coolgray" : "text-muted";
 
   return (
     <div>

@@ -34,7 +34,7 @@ export default function TechnologiesPage() {
           ))}
         </div>
 
-        <p className="mt-11 border-t border-white/10 pt-6 text-[15px] text-[#A9B4C4]">
+        <p className="mt-11 border-t border-white/10 pt-6 text-[15px] text-coolgray">
           Each platform is built from a specific operational problem, and is developed and
           operated independently within one shared Vorexa product standard.
         </p>

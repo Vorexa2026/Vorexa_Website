@@ -30,7 +30,7 @@ export async function OgTemplate({
    * logo chip instead of the plain Vorexa symbol mark. */
   logoPath?: string;
 }) {
-  const symbol = await getDataUri("public/brand/vorexa-symbol.png");
+  const symbol = await getDataUri("public/brand/vorexa-icon.png");
   const logo = logoPath ? await getDataUri(logoPath) : null;
 
   return (
@@ -45,24 +45,13 @@ export async function OgTemplate({
         padding: "72px",
       }}
     >
+      {/* No white tile behind the logo — Brand Identity v2.1, section 02. */}
       {logo ? (
-        <div
-          style={{
-            display: "flex",
-            width: 72,
-            height: 72,
-            borderRadius: "50%",
-            backgroundColor: "#FFFFFF",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logo} width={40} height={40} alt="" />
-        </div>
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={logo} width={72} height={53} alt="" />
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={symbol} width={64} height={48} alt="" />
+        <img src={symbol} width={72} height={53} alt="" />
       )}
 
       <div style={{ display: "flex", flexDirection: "column", maxWidth: "980px" }}>
@@ -100,7 +89,7 @@ export async function OgTemplate({
             fontFamily: "Inter",
             fontSize: 28,
             lineHeight: 1.4,
-            color: "#A9B4C4",
+            color: "#A7B5C8",
           }}
         >
           {subtitle}

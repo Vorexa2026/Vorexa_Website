@@ -2,20 +2,25 @@
 
 import { useState, type FormEvent } from "react";
 
-const ENQUIRY_TYPES = ["Product", "Partnership", "Investor", "Other"] as const;
+const ENQUIRY_TYPES = [
+  "Product access",
+  "Partnership / Business",
+  "Privacy / Data request",
+  "Other",
+] as const;
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClass =
-  "w-full border border-white/20 bg-white/5 px-4 py-3 text-[16px] text-white placeholder:text-white/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue";
+  "w-full rounded-card border border-white/20 bg-white/5 px-4 py-3 text-[16px] text-white placeholder:text-white/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue";
 const labelClass = "mb-2 block text-[14px] font-semibold text-white";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [enquiryType, setEnquiryType] = useState<(typeof ENQUIRY_TYPES)[number]>("Product");
+  const [enquiryType, setEnquiryType] = useState<(typeof ENQUIRY_TYPES)[number]>("Product access");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -57,7 +62,7 @@ export default function ContactForm() {
       setName("");
       setEmail("");
       setCompany("");
-      setEnquiryType("Product");
+      setEnquiryType("Product access");
       setMessage("");
     } catch {
       setStatus("error");
@@ -169,7 +174,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-[44px] w-fit items-center justify-center bg-blue px-7 py-4 text-[18px] font-bold text-white transition-colors duration-200 hover:bg-cyan disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex min-h-[44px] w-fit items-center justify-center rounded-card bg-blue px-7 py-4 text-[18px] font-bold text-white transition-colors duration-200 hover:bg-cyan disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send"}
       </button>

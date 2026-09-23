@@ -33,39 +33,26 @@ export default function Header() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-offwhite/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-content items-center justify-between px-5 sm:px-10">
-        <Link
-          href="/"
-          aria-label="Vorexa home"
-          className="flex h-7 items-center gap-3"
-          onClick={closeMenu}
-        >
+        <Link href="/" aria-label="Vorexa home" className="flex h-9 items-center" onClick={closeMenu}>
           <Image
-            src="/brand/vorexa-symbol.png"
-            alt=""
-            width={26}
-            height={20}
-            className="h-6 w-auto object-contain"
-            priority
-          />
-          <Image
-            src="/brand/vorexa-wordmark.png"
+            src="/brand/vorexa-logo.png"
             alt="Vorexa"
-            width={140}
-            height={20}
-            className="h-[19px] w-auto object-contain"
+            width={1200}
+            height={336}
+            className="h-9 w-auto object-contain"
             priority
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-2 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`border-b-[3px] bg-navy px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:bg-blue ${
+              className={`border-b-[3px] px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors duration-200 hover:text-cyan ${
                 isActive(link.href) ? "border-cyan" : "border-transparent"
               }`}
             >
@@ -81,15 +68,15 @@ export default function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           onClick={() => setMenuOpen((v) => !v)}
-          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 border border-border md:hidden"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 border border-white/20 md:hidden"
         >
           <span
-            className={`block h-[2px] w-5 bg-navy transition-transform duration-200 ${
+            className={`block h-[2px] w-5 bg-white transition-transform duration-200 ${
               menuOpen ? "translate-y-[3.5px] rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-[2px] w-5 bg-navy transition-transform duration-200 ${
+            className={`block h-[2px] w-5 bg-white transition-transform duration-200 ${
               menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
             }`}
           />
@@ -100,7 +87,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="flex flex-col border-t border-border bg-offwhite px-5 pb-5 pt-4 md:hidden"
+          className="flex flex-col border-t border-white/10 bg-navy px-5 pb-5 pt-4 md:hidden"
         >
           {navLinks.map((link, i) => (
             <Link
@@ -109,7 +96,7 @@ export default function Header() {
               ref={i === 0 ? firstLinkRef : undefined}
               onClick={closeMenu}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`flex min-h-[56px] items-center justify-center bg-navy font-heading text-[18px] font-semibold text-white ${
+              className={`flex min-h-[56px] items-center justify-center bg-panel font-heading text-[18px] font-semibold text-white ${
                 i > 0 ? "mt-2" : ""
               } ${isActive(link.href) ? "border-b-[3px] border-cyan" : "border-b-[3px] border-transparent"}`}
             >

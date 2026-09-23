@@ -9,13 +9,13 @@ export default function Footer() {
         <div className="flex flex-wrap items-start justify-between gap-10">
           <div className="flex items-center gap-3">
             <Image
-              src="/brand/vorexa-symbol.png"
+              src="/brand/vorexa-icon.png"
               alt="Vorexa"
-              width={28}
-              height={22}
+              width={400}
+              height={296}
               className="h-7 w-auto object-contain"
             />
-            <p className="font-body text-[12px] tracking-[0.08em] text-[#A9B4C4]">
+            <p className="font-body text-[12px] tracking-[0.08em] text-coolgray">
               Intelligence. Systems. Decisions.
             </p>
           </div>
@@ -31,7 +31,7 @@ export default function Footer() {
                   href={product.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13px] text-[#A9B4C4] transition-colors duration-200 hover:text-cyan"
+                  className="text-[13px] text-coolgray transition-colors duration-200 hover:text-cyan"
                 >
                   {product.name}
                 </a>
@@ -44,7 +44,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[13px] text-[#A9B4C4] transition-colors duration-200 hover:text-cyan"
+                className="text-[13px] text-coolgray transition-colors duration-200 hover:text-cyan"
               >
                 {link.label}
               </Link>
@@ -54,16 +54,16 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <p className="text-[12px] text-[#A9B4C4]">Vorexa (Pty) Ltd</p>
-            <p className="text-[12px] text-[#A9B4C4]">Intelligence. Systems. Decisions.</p>
-            <p className="text-[12px] text-[#A9B4C4]">© 2026 Vorexa. All rights reserved.</p>
+            <p className="text-[12px] text-coolgray">Vorexa (Pty) Ltd</p>
+            <p className="text-[12px] text-coolgray">Intelligence. Systems. Decisions.</p>
+            <p className="text-[12px] text-coolgray">© 2026 Vorexa. All rights reserved.</p>
           </div>
           <nav aria-label="Legal" className="flex flex-wrap gap-6">
             {legalLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[12px] text-[#A9B4C4] transition-colors duration-200 hover:text-cyan"
+                className="text-[12px] text-coolgray transition-colors duration-200 hover:text-cyan"
               >
                 {link.label}
               </Link>

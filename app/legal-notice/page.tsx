@@ -33,6 +33,7 @@ export default function LegalNoticePage() {
     >
       <div className="flex flex-col">
         <Row label="Company">Vorexa (Pty) Ltd</Row>
+        <Row label="Legal status">Private company, registered and operating in South Africa</Row>
         <Row label="Founder">Mornay Walters</Row>
         <Row label="Registered address">{contactAddress}</Row>
         <Row label="Country">South Africa</Row>

@@ -22,9 +22,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const title = "Vorexa | Intelligence. Systems. Decisions.";
+const title = "Vorexa | Operational intelligence, built into systems.";
 const description =
-  "Vorexa builds focused technology systems for clearer operations, connected information and better decisions.";
+  "Vorexa is an independent South African technology company that designs focused operating systems from real operational problems. Vorexa Atlas and Vorexa Core are in production.";
 
 // NOTE: SITE_URL (lib/site.ts) currently falls back to a placeholder domain —
 // update the SITE_URL env var once the production domain is confirmed (see
@@ -72,7 +72,7 @@ export default function RootLayout({
                 "@type": "Organization",
                 name: "Vorexa",
                 url: SITE_URL,
-                logo: `${SITE_URL}/brand/vorexa-symbol.png`,
+                logo: `${SITE_URL}/brand/vorexa-icon.png`,
               },
               {
                 "@type": "WebSite",

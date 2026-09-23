@@ -51,11 +51,33 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     ),
   },
   {
-    heading: "Cookies",
+    heading: "Analytics and performance telemetry",
     body: (
       <p>
-        This website does not currently use cookies for analytics or tracking, beyond what is
-        strictly necessary for the site to function.
+        This website uses Vercel Analytics and Vercel Speed Insights to understand aggregate site
+        usage and page performance. Neither sets tracking cookies or builds an individual profile
+        of you, and neither is used for advertising. Beyond this, the site does not use cookies
+        for tracking.
+      </p>
+    ),
+  },
+  {
+    heading: "Cross-border processing",
+    body: (
+      <p>
+        Contact form submissions are processed using Resend, and site analytics are processed
+        using Vercel; both are hosting/infrastructure operators that may process data outside
+        South Africa in the course of providing their service. Data is not sold or shared with
+        any other third party.
+      </p>
+    ),
+  },
+  {
+    heading: "Access to information (PAIA)",
+    body: (
+      <p>
+        Requests for access to information held by Vorexa under the Promotion of Access to
+        Information Act 2 of 2000 (PAIA) can be directed to the Information Officer below.
       </p>
     ),
   },

@@ -1,6 +1,7 @@
 export type ProductStatus = "Production";
 
-/** Drives the sharper/architectural vs. calmer/personal card treatment. */
+/** Drives the product's material accent — bronze/gold for Atlas, teal/mint
+ * for Core. Card geometry itself is shared across both products. */
 export type ProductTheme = "atlas" | "core";
 
 export type Product = {
@@ -15,7 +16,7 @@ export type Product = {
   description: string;
   /** External production URL the platform lives at. */
   url: string;
-  /** Icon-only mark, transparent background. */
+  /** Icon-only sculpted mark, transparent background. */
   logo: string;
   /** Full lockup (mark + wordmark), transparent background. */
   lockup: string;
@@ -30,6 +31,9 @@ export type Product = {
   capabilities: string[];
   /** Product philosophy paragraph for the detail page. */
   philosophy: string;
+  /** Honest, non-fabricated production-proof statements — no invented
+   * metrics, user counts or screenshots. */
+  proof: string[];
 };
 
 export const products: Product[] = [
@@ -42,8 +46,8 @@ export const products: Product[] = [
     description:
       "A professional property operating system that centralises portfolio, building, tenant, leasing, finance, arrears, operational and reporting workflows in one structured environment.",
     url: "https://atlas.vorexa.co.za",
-    logo: "/brand/products/vorexa-atlas.png",
-    lockup: "/brand/products/vorexa-atlas-lockup.png",
+    logo: "/brand/products/vorexa-atlas-icon.png",
+    lockup: "/brand/products/vorexa-atlas-logo.png",
     theme: "atlas",
     whatItDoes:
       "Vorexa Atlas is a professional property operating system designed to centralise portfolio, building, tenant, leasing, finance, arrears, operational, reporting and management workflows in one structured environment.",
@@ -64,6 +68,11 @@ export const products: Product[] = [
     ],
     philosophy:
       "Atlas is built around the operation, not around a feature list. Every workflow in the product mirrors how a portfolio is actually run day to day, so information stays connected, accountability stays visible, and reporting stays current instead of reconstructed after the fact.",
+    proof: [
+      "In production, managing live commercial property portfolios day to day.",
+      "Every workflow mirrors how a portfolio is actually run, not a generic property template.",
+      "Refined through real operational use, not a feature roadmap built in isolation.",
+    ],
   },
   {
     name: "Vorexa Core",
@@ -74,8 +83,8 @@ export const products: Product[] = [
     description:
       "A private personal operating system that brings the important areas of life, tasks, calendar, finance, documents and personal information, into one structured, connected environment.",
     url: "https://core.vorexa.co.za",
-    logo: "/brand/products/vorexa-core.png",
-    lockup: "/brand/products/vorexa-core-lockup.png",
+    logo: "/brand/products/vorexa-core-icon.png",
+    lockup: "/brand/products/vorexa-core-logo.png",
     theme: "core",
     whatItDoes:
       "Vorexa Core is a private personal operating system that brings the important areas of life into one structured digital environment, rather than spreading them across isolated apps.",
@@ -94,6 +103,11 @@ export const products: Product[] = [
     ],
     philosophy:
       "Core is designed around the individual, not around isolated categories of app. Information, commitments and records stay connected to each other, so daily use never means switching between tools that don't share context.",
+    proof: [
+      "In production and in active daily use as a private, individual operating system.",
+      "Every module reflects a real personal-administration workflow, not a generic productivity template.",
+      "Access stays private to the individual — Core is not a public, open-signup product.",
+    ],
   },
 ];
 
@@ -110,6 +124,22 @@ export const howWeBuild: { title: string; body: string }[] = [
   {
     title: "Independent by design",
     body: "Every decision serves the person using the software. No compromise, no features built for optics.",
+  },
+];
+
+// "Why Vorexa" — fragmentation -> system -> operational clarity. Homepage only.
+export const whyVorexa: { title: string; body: string }[] = [
+  {
+    title: "Fragmentation",
+    body: "Operational information is scattered across spreadsheets, inboxes, messages and memory, so no one has a single, current view.",
+  },
+  {
+    title: "System",
+    body: "Vorexa structures that information, and the processes around it, into one coherent operating system built for how the work actually happens.",
+  },
+  {
+    title: "Operational clarity",
+    body: "The result is a connected environment for action, control and decision-making, instead of a permanent reconstruction effort.",
   },
 ];
 
@@ -137,46 +167,20 @@ export const businessModel: { title: string; body: string }[] = [
   },
 ];
 
-export const capabilityGroups: { title: string; items: string[] }[] = [
+// Homepage trust section — only verified, factual statements. See /security
+// for the fuller Security & Trust page.
+export const trustPoints: { title: string; body: string }[] = [
   {
-    title: "Product Engineering",
-    items: [
-      "Web applications",
-      "Responsive platform interfaces",
-      "Progressive web applications",
-      "Authentication and permissions",
-      "Data-driven dashboards",
-    ],
+    title: "South African company",
+    body: "Vorexa (Pty) Ltd is an independent, founder-operated technology company based in Cape Town, South Africa.",
   },
   {
-    title: "Operational Systems",
-    items: [
-      "Workflow architecture",
-      "Structured records",
-      "Portfolio and entity management",
-      "Task and accountability systems",
-      "Reporting environments",
-    ],
+    title: "Restrained access model",
+    body: "Atlas and Core are private, access-controlled production platforms, not open public sign-up products.",
   },
   {
-    title: "Data & Intelligence",
-    items: [
-      "Operational dashboards",
-      "Structured business data",
-      "Decision support",
-      "Searchable records",
-      "System integrations",
-    ],
-  },
-  {
-    title: "Product Infrastructure",
-    items: [
-      "Cloud deployment",
-      "Database architecture",
-      "Secure application access",
-      "API integration",
-      "Scalable product environments",
-    ],
+    title: "Direct support",
+    body: "Product, partnership and privacy enquiries reach Vorexa directly — no ticket queue, no chatbot.",
   },
 ];
 
@@ -197,6 +201,7 @@ export const book = {
 export const navLinks = [
   { href: "/technologies", label: "Platforms" },
   { href: "/about", label: "About" },
+  { href: "/security", label: "Security & Trust" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -206,6 +211,7 @@ export const legalLinks = [
   { href: "/legal-notice", label: "Legal Notice" },
   { href: "/terms", label: "Terms of Service" },
   { href: "/privacy", label: "Data & Privacy" },
+  { href: "/security", label: "Security & Trust" },
 ];
 
 export const contactEmail = "info@vorexa.co.za";

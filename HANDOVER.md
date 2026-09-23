@@ -1,5 +1,71 @@
 # Handover Note
 
+## Brand Identity & Product System v2.1 rebrand
+
+Implemented against the supplied `Vorexa_Main_Website_Update_Spec_v2.1.pdf` and
+`Vorexa_Master_Brand_Identity_and_Product_System_v2.1.pdf`.
+
+**Logo assets** — the three supplied 3D sculpted lockups (`vorexa-logo-transparent.png`,
+`vorexa-atlas-logo-transparent.png`, `vorexa-core-logo-transparent.png`) were genuinely
+transparent (RGBA) and used as-is, cropped to content and downscaled for web weight —
+artwork itself untouched. No separate square icon asset was supplied, so
+`public/brand/vorexa-icon.png` (and the per-product `-icon.png` files) were derived by
+cropping the knot mark out of each lockup at its natural gap before the wordmark — same
+technique as the Atlas/Core relaunch pass. These icon crops feed the favicon, apple-icon,
+OG template badge and every small logo placement. `app/apple-icon.png` composites the
+mark onto opaque Deep Navy per Apple's guidance against transparency; `app/icon.png`
+stays transparent. No white tile sits behind the logo anywhere on the site.
+
+**Design tokens** (`tailwind.config.ts`) — moved to the v2.1 palette: `navy` #0B1F44,
+`midnight` #071426 (hero-only), `panel` #102B4F, `blue` #007AFF (Electric Blue, the one
+shared action colour), `cyan` #00E5FF (signal/glow), `atlas-bronze`/`atlas-gold`,
+`core-teal`/`core-mint`, `coolgray` #A7B5C8 (muted). The old teal accent and the
+short-lived "electric" token from the previous pass are both gone — every class and
+inline `rgba()` gradient literal across the codebase was swept to the new values, not
+just the ones with obvious names.
+
+**Product cards** — Atlas and Core now share exactly one component geometry
+(`components/product-card.tsx`): same radius, padding, border and hover language.
+Differentiation is restricted to one material accent per the governing rule (bronze/gold
+border-top and label colour for Atlas, teal/mint for Core) — the sharper/rounder shape
+split from the previous pass was removed, matching the spec's explicit acceptance
+criterion.
+
+**Homepage** (`app/page.tsx`) rebuilt to the spec's nine-section order: hero (full 3D
+lockup as the hero asset, no more abstract architecture-panel mock), production
+platforms, Why Vorexa (fragmentation → system → clarity), product proof, how Vorexa
+builds, trust, founder teaser, future ecosystem, footer. The old generic "What we build
+around" capability-grid section was dropped — it wasn't in the spec's required order and
+read as exactly the "long feature catalogue" the brief says to avoid.
+
+**Product proof section** — the spec calls for "production screenshots/crops... never
+fake mock data presented as real." No real screenshots of the live Atlas/Core apps were
+supplied or accessible from this session (separate repos, no browser tooling available
+here), so this section uses honest, non-quantified production-status statements
+(`product.proof` in `content/products.ts`) instead of fabricating or mocking screenshots.
+Swap in real product screenshots there when available — don't invent them.
+
+**New `/security` page** — Security & Trust, added to primary nav, footer and the
+sitemap. States only what's actually verifiable from this codebase: Vercel hosting +
+HTTPS, Vercel Analytics/Speed Insights (no tracking cookies), Resend-based contact form
+processing, Atlas/Core's private access model, and a responsible-disclosure contact.
+Deliberately does **not** claim MFA, RLS, audit logging, encryption specifics or any
+"bank-grade"/"fully compliant" language for Atlas or Core — those platforms live in
+separate repositories not in this session's scope, so their internals aren't verifiable
+from here. Add specifics only once they're confirmed against the actual platform code.
+
+**Legal pages** — Privacy Policy now discloses the Vercel Analytics/Speed Insights
+telemetry actually in use (previously implied only contact-form processing) and adds a
+PAIA request paragraph pointing to the existing Information Officer. Legal Notice gained
+a "Legal status: private company, registered and operating in South Africa" line. Per
+the spec's own **Publication Gate**, the CIPC registration number and any formal PAIA
+manual are still not invented — neither was supplied or verified, so both remain
+deliberately absent rather than shown as a public placeholder. Add them as a `<Row>`
+(Legal Notice) and a manual link (Privacy) once available.
+
+**Contact form** — enquiry-type routing updated to Product access / Partnership /
+Business / Privacy / Data request / Other, matching the spec's required routing.
+
 ## Atlas & Core relaunch
 
 The Notara/Obstrata/Ledgera/Vaulta portfolio has been fully retired from the public

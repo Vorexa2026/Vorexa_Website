@@ -6,7 +6,8 @@ import { contactAddress, contactEmail, contactPhone, contactPhoneHref } from "@/
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   title: "Contact",
-  description: "For product, partnership or business enquiries, contact Vorexa directly.",
+  description:
+    "Contact Vorexa directly for product access, partnership or business enquiries, or privacy and data requests.",
 };
 
 export default function ContactPage() {
@@ -16,7 +17,7 @@ export default function ContactPage() {
         aria-hidden="true"
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(90% 80% at 20% 30%, rgba(0,182,166,0.14), transparent 60%)",
+          background: "radial-gradient(90% 80% at 20% 30%, rgba(0,229,255,0.14), transparent 60%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-content px-5 py-16 sm:px-10 md:py-24">
@@ -25,7 +26,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="Contact Vorexa"
               heading="Start a focused conversation."
-              intro="For product, partnership or business enquiries, use the form or contact us directly."
+              intro="For product access, partnership or business enquiries, or privacy and data requests, use the form or contact us directly."
               variant="light"
             />
 
